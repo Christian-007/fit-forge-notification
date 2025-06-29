@@ -3,7 +3,9 @@
 Before getting started, ensure you have done the following things:
 
 1. Install `Go`
-2. Clone https://github.com/Christian-007/fit-forge
+2. Clone [Core API repository](https://github.com/Christian-007/fit-forge)
+3. Execute `make generate_jwks` from the Core API repository
+4. Copy and paste `private.pem` file to this repository
 
 ## Getting Started
 
@@ -25,4 +27,5 @@ REDIS_DSN=localhost:6380
 REDIS_PASSWORD=secret
 PUBSUB_PROJECT_ID=local-project
 PUBSUB_EMULATOR_HOST=localhost:8085
+FRONTEND_URL=http://localhost:3000
 ```
