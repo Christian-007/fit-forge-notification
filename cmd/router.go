@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	sseweb "github.com/Christian-007/fit-forge-notification/internal/app/sse/delivery/web"
 	"github.com/Christian-007/fit-forge-notification/internal/pkg/appdependency"
@@ -18,7 +19,8 @@ func Routes(appDependencies appdependency.AppDependency) *chi.Mux {
 
 	r.Use(logRequest)
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedOrigins: []string{os.Getenv("FRONTEND_URL")},
+		AllowCredentials: true,
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 	}))
