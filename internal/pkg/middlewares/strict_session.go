@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/Christian-007/fit-forge-notification/internal/pkg/apperrors"
 	"github.com/Christian-007/fit-forge-notification/internal/pkg/appservices"
@@ -21,7 +22,7 @@ func StrictSession(authService appservices.AuthService, secretManagerProvider se
 				return
 			}
 
-			privateKey, err := secretManagerProvider.GetPrivateKey(r.Context(), "")
+			privateKey, err := secretManagerProvider.GetPrivateKey(r.Context(), os.Getenv("GCP_SECRET_DIR"))
 			if err != nil {
 				utils.SendResponse(w, http.StatusInternalServerError, utils.ErrorResponse{Message: "Internal Server Error"})
 				return
